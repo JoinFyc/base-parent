@@ -38,7 +38,7 @@
         <velocity.version>1.7</velocity.version>
         <de.ruedigermoeller.fst.version>2.43</de.ruedigermoeller.fst.version>
         <log4j.version>2.17.2</log4j.version>
-        <easyexcel.version>3.2.2</easyexcel.version>
+        <easyexcel.version>3.3.2</easyexcel.version>
 
         <httpclient.version>4.5.14</httpclient.version>
 
@@ -196,11 +196,6 @@
                 <groupId>org.apache.skywalking</groupId>
                 <artifactId>apm-toolkit-log4j-2.x</artifactId>
                 <version>${apm-log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
