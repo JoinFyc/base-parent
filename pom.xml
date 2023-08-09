@@ -17,9 +17,18 @@
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.3.RELEASE</spring-cloud-alibaba.version>
         <spring-cloud-starter-alibaba-seata.version>2.2.3.RELEASE</spring-cloud-starter-alibaba-seata.version>
+        <springframework.version>5.1.6.RELEASE</springframework.version>
 
         <mybatis-plus-boot-starter.version>3.5.2</mybatis-plus-boot-starter.version>
         <mybatis-plus-generator.version>3.5.2</mybatis-plus-generator.version>
+
+        <log4j2.version>2.17.2</log4j2.version>
+        <protobuf-java.version>2.5.0</protobuf-java.version>
+        <aliyun-log-log4j2.version>0.1.12</aliyun-log-log4j2.version>
+
+        <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
+        <jackson-annotations.version>2.11.2</jackson-annotations.version>
+        <velocity-engine-core.version>2.0</velocity-engine-core.version>
 
         <knife4j-spring-boot-starter.version>3.0.2</knife4j-spring-boot-starter.version>
 
@@ -63,6 +72,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${springframework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -127,6 +143,11 @@
                 <version>${log4j.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.aliyun.openservices</groupId>
+                <artifactId>aliyun-log-log4j2-appender</artifactId>
+                <version>${aliyun-log-log4j2.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
                 <version>${easyexcel.version}</version>
@@ -172,6 +193,38 @@
                 <groupId>org.apache.skywalking</groupId>
                 <artifactId>apm-toolkit-log4j-2.x</artifactId>
                 <version>${apm-log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-bom</artifactId>
+                <version>${log4j2.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson-annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity-engine-core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
