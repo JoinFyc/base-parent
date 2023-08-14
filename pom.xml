@@ -52,7 +52,7 @@
         <redisson-spring-boot-starter.version>3.13.3</redisson-spring-boot-starter.version>
         <commons-codec.version>1.15</commons-codec.version>
         <apm-log4j.version>8.3.0</apm-log4j.version>
-        <xxl-job.version>2.4.0</xxl-job.version>
+        <xxl-job.version>2.2.0</xxl-job.version>
     </properties>
 
     <dependencyManagement>
