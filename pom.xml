@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.sunrate.cloud</groupId>
+    <groupId>com.fei.cloud</groupId>
     <artifactId>base-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -268,7 +268,7 @@
         <repository>
             <id>maven-central</id>
             <name>maven-central</name>
-            <url>http://139.224.8.187:8091/repository/maven-public/</url>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
     </repositories>
 
@@ -276,12 +276,12 @@
         <snapshotRepository>
             <id>maven-central</id>
             <name>maven-central</name>
-            <url>http://139.224.8.187:8091/repository/thirty-party/</url>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </snapshotRepository>
         <repository>
             <id>maven-central</id>
             <name>maven-central</name>
-            <url>http://139.224.8.187:8091/repository/thirty-party/</url>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
     </distributionManagement>
 
