@@ -19,3 +19,4 @@ target
 /assembly/template/dalgen/config/config.xml
 /assembly/template/dalgen/ext/mybatis-config.xml.ftl
 /.idea/
+

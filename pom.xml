@@ -1,239 +1,270 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.fei.cloud</groupId>
+    <groupId>com.fei.base</groupId>
     <artifactId>base-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
+    <parent>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>Hoxton.SR8</version>
+    </parent>
+
+    <name>base-parent</name>
+
     <properties>
+<!--        <nexus.url>http://maven.aliyun.com/nexus/content/groups/public/</nexus.url>-->
+        <global.encoding>UTF-8</global.encoding>
+        <global.jdk.version>1.8</global.jdk.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.0.0</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven.compiler.source>${global.jdk.version}</maven.compiler.source>
+        <maven.compiler.target>${global.jdk.version}</maven.compiler.target>
 
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--mengxiang 组件 start-->
+        <base.common.version>1.0.0</base.common.version>
 
-        <!--以下版本与官网有差异，待调整 https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E/842769905784882086411fb69ead55f95abcee8a-->
-        <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.2.3.RELEASE</spring-cloud-alibaba.version>
-        <spring-cloud-starter-alibaba-seata.version>2.2.3.RELEASE</spring-cloud-starter-alibaba-seata.version>
-        <springframework.version>5.1.6.RELEASE</springframework.version>
+        <base.common.origin.version>1.0.17</base.common.origin.version>
+        <base.sentinel.version>2.0.0</base.sentinel.version>
+        <base.metrics.version>2.0.1</base.metrics.version>
+        <xxl-job.version>2.2.0</xxl-job.version>
+        <rocketmq.springboot.version>2.1.1</rocketmq.springboot.version>
+        <yun-logger.version>1.0.3</yun-logger.version>
+        <akc-yst.version>1.1</akc-yst.version>
+        <!--mengxiang 组件 end-->
 
-        <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
-        <mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
-        <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
+        <!--第三方业务组件start-->
+        <mybatis.spring.boot.starter.version>2.1.0</mybatis.spring.boot.starter.version>
+        <mysql.conector.version>5.1.49</mysql.conector.version>
+        <HikariCP.version>3.3.1</HikariCP.version>
+        <sharding.jdbc.version>4.1.1</sharding.jdbc.version>
+        <rocketmq.version>4.7.1</rocketmq.version>
+        <common-lang3.version>3.9</common-lang3.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <guava.version>29.0-jre</guava.version>
+        <fastjson.version>1.2.72</fastjson.version>
 
-        <log4j2.version>2.17.2</log4j2.version>
-        <protobuf-java.version>2.5.0</protobuf-java.version>
-        <aliyun-log-log4j2.version>0.1.12</aliyun-log-log4j2.version>
+        <spring.io.micrometer.version>1.1.5</spring.io.micrometer.version>
+        <springfox.swagger.version>2.9.2</springfox.swagger.version>
+        <swagger.annotation.version>1.5.20</swagger.annotation.version>
+        <assertj-core>2.6.0</assertj-core>
+        <mockito-all.version>1.10.19</mockito-all.version>
+        <junit.version>4.12</junit.version>
 
-        <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
-        <jackson-annotations.version>2.11.2</jackson-annotations.version>
-        <velocity-engine-core.version>2.0</velocity-engine-core.version>
-
-        <knife4j-spring-boot-starter.version>3.0.3</knife4j-spring-boot-starter.version>
-
-        <redisson.version>3.13.3</redisson.version>
-        <xstream.version>1.4.20</xstream.version>
-        <velocity.version>1.7</velocity.version>
-        <de.ruedigermoeller.fst.version>2.43</de.ruedigermoeller.fst.version>
-        <log4j.version>2.17.2</log4j.version>
-        <easyexcel.version>3.3.2</easyexcel.version>
-
-        <httpclient.version>4.5.14</httpclient.version>
-
-        <druid.version>1.2.3</druid.version>
-        <fastjson.version>1.2.83</fastjson.version>
-        <lombok.version>1.18.16</lombok.version>
-        <commons-lang3.version>3.10</commons-lang3.version>
-        <gson.version>2.8.9</gson.version>
-        <swagger-annotations.version>1.5.22</swagger-annotations.version>
-        <commons-beanutils.version>1.9.4</commons-beanutils.version>
-        <redisson-spring-boot-starter.version>3.13.3</redisson-spring-boot-starter.version>
-        <commons-codec.version>1.15</commons-codec.version>
-        <apm-log4j.version>8.3.0</apm-log4j.version>
-        <xxl-job.version>2.4.0</xxl-job.version>
+        <org.projectlombok.version>1.18.12</org.projectlombok.version>
+        <!--第三方业务组件end-->
     </properties>
-
     <dependencyManagement>
         <dependencies>
+
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-model</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-utils</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-apollo</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${springframework.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-log</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-openfeign-dependencies</artifactId>
-                <version>2.2.6.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-process</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-netflix-dependencies</artifactId>
-                <version>2.2.6.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-sequence</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-lock</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-generator</artifactId>
-                <version>${mybatis-plus-generator.version}</version>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-rpc</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
+
             <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-spring-boot-starter</artifactId>
-                <version>${knife4j-spring-boot-starter.version}</version>
+                <groupId>com.fei.base</groupId>
+                <artifactId>lock-api</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
+
             <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redisson-spring-boot-starter.version}</version>
+                <groupId>com.fei.base</groupId>
+                <artifactId>lock-base</artifactId>
+                <version>${base.common.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-                <type>jar</type>
-            </dependency>
-            <dependency>
-                <groupId>de.ruedigermoeller</groupId>
-                <artifactId>fst</artifactId>
-                <version>${de.ruedigermoeller.fst.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.aliyun.openservices</groupId>
-                <artifactId>aliyun-log-log4j2-appender</artifactId>
-                <version>${aliyun-log-log4j2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>easyexcel</artifactId>
-                <version>${easyexcel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>2.6</version>
-                <type>jar</type>
-            </dependency>
-            <dependency>
-                <groupId>com.thoughtworks.xstream</groupId>
-                <artifactId>xstream</artifactId>
-                <version>${xstream.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger-annotations.version}</version>
-            </dependency>
+
+
+            <!--            暂无功能   start  -->
+            <!--            <dependency>-->
+            <!--                <groupId>com.fei.base</groupId>-->
+            <!--                <artifactId>lock-zookeeper</artifactId>-->
+            <!--                <version>${base.common.version}</version>-->
+            <!--            </dependency>-->
+            <!--            暂无功能  end  -->
+
+            <!--            暂未整合   start  -->
+            <!--            <dependency>-->
+            <!--                <groupId>com.mengxiang.base</groupId>-->
+            <!--                <artifactId>common-http</artifactId>-->
+            <!--                <version>${base.common.origin.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.mengxiang.base</groupId>-->
+            <!--                <artifactId>common-security</artifactId>-->
+            <!--                <version>${base.common.origin.version}</version>-->
+            <!--            </dependency>-->
+
+            <!--            <dependency>-->
+            <!--                <groupId>com.mengxiang.base</groupId>-->
+            <!--                <artifactId>base-sentinel-client</artifactId>-->
+            <!--                <version>${base.sentinel.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.mengxiang.base</groupId>-->
+            <!--                <artifactId>base-metrics-client</artifactId>-->
+            <!--                <version>${base.metrics.version}</version>-->
+            <!--            </dependency>-->
+            <!--            暂未整合   end  -->
+
             <dependency>
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
             </dependency>
-            <dependency>
-                <groupId>commons-beanutils</groupId>
-                <artifactId>commons-beanutils</artifactId>
-                <version>${commons-beanutils.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>${commons-codec.version}</version>
-            </dependency>
 
             <dependency>
-                <groupId>org.apache.skywalking</groupId>
-                <artifactId>apm-toolkit-log4j-2.x</artifactId>
-                <version>${apm-log4j.version}</version>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.springboot.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-bom</artifactId>
-                <version>${log4j2.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
             </dependency>
+            <!--db start-->
             <dependency>
-                <groupId>com.google.protobuf</groupId>
-                <artifactId>protobuf-java</artifactId>
-                <version>${protobuf-java.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate-validator.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson-annotations.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity-engine-core</artifactId>
-                <version>${velocity-engine-core.version}</version>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector-java.version}</version>
+                <version>${mysql.conector.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>${sharding.jdbc.version}</version>
+            </dependency>
+            <!--db end-->
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${common-lang3.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>${httpclient.version}</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
             </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+
+            <!--  guava start -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <!--  guava end -->
+
+            <!-- fastJson start -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!-- fastJson end -->
+            <!--  swagger start -->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.annotation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>1.5.22</version>
+            </dependency>
+            <!--  swagger end  -->
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito-all.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!--  lombok start -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${org.projectlombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!--  lombok end -->
         </dependencies>
     </dependencyManagement>
 
@@ -243,46 +274,40 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
                     <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                        <encoding>UTF-8</encoding>
+                        <source>${global.jdk.version}</source>
+                        <target>${global.jdk.version}</target>
                     </configuration>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>2.8.1</version>
-                <configuration>
-                    <generateBackupPoms>false</generateBackupPoms>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>maven-central</id>
-            <name>maven-central</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
-
     <distributionManagement>
-        <snapshotRepository>
-            <id>maven-central</id>
-            <name>maven-central</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </snapshotRepository>
-        <repository>
-            <id>maven-central</id>
-            <name>maven-central</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
+<!--        <snapshotRepository>-->
+<!--            <id>nexus-snapshots</id>-->
+<!--            <url>${nexus.url}/content/repositories/snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--        <repository>-->
+<!--            <id>nexus-releases</id>-->
+<!--            <url>${nexus.url}/content/repositories/releases/</url>-->
+<!--        </repository>-->
     </distributionManagement>
 
 </project>
