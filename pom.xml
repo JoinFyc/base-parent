@@ -1,44 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.fei.base</groupId>
     <artifactId>base-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>Hoxton.SR8</version>
+        <version>2023.0.3</version>
     </parent>
 
     <name>base-parent</name>
 
     <properties>
-<!--        <nexus.url>http://maven.aliyun.com/nexus/content/groups/public/</nexus.url>-->
+        <nexus.url>http://maven.aliyun.com/nexus/content/groups/public/</nexus.url>
         <global.encoding>UTF-8</global.encoding>
-        <global.jdk.version>1.8</global.jdk.version>
+        <jdk.version>17</jdk.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.0</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-        <maven.compiler.source>${global.jdk.version}</maven.compiler.source>
-        <maven.compiler.target>${global.jdk.version}</maven.compiler.target>
+        <maven.compiler.source>${jdk.version}</maven.compiler.source>
+        <maven.compiler.target>${jdk.version}</maven.compiler.target>
 
         <!--mengxiang 组件 start-->
-        <base.common.version>1.0.0</base.common.version>
-
-        <base.common.origin.version>1.0.17</base.common.origin.version>
+        <base.common.version>1.2.0</base.common.version>
         <base.sentinel.version>2.0.0</base.sentinel.version>
         <base.metrics.version>2.0.1</base.metrics.version>
         <xxl-job.version>2.2.0</xxl-job.version>
         <rocketmq.springboot.version>2.1.1</rocketmq.springboot.version>
         <yun-logger.version>1.0.3</yun-logger.version>
         <akc-yst.version>1.1</akc-yst.version>
+        <jakarta.version>6.1.0</jakarta.version>
         <!--mengxiang 组件 end-->
 
         <!--第三方业务组件start-->
-        <mybatis.spring.boot.starter.version>2.1.0</mybatis.spring.boot.starter.version>
+        <mybatis.spring.boot.starter.version>3.0.3</mybatis.spring.boot.starter.version>
         <mysql.conector.version>5.1.49</mysql.conector.version>
         <HikariCP.version>3.3.1</HikariCP.version>
         <sharding.jdbc.version>4.1.1</sharding.jdbc.version>
@@ -55,43 +55,68 @@
         <assertj-core>2.6.0</assertj-core>
         <mockito-all.version>1.10.19</mockito-all.version>
         <junit.version>4.12</junit.version>
-
-        <org.projectlombok.version>1.18.12</org.projectlombok.version>
+        <org.projectlombok.version>1.18.34</org.projectlombok.version>
         <!--第三方业务组件end-->
     </properties>
     <dependencyManagement>
         <dependencies>
-
+            <!--model start -->
             <dependency>
                 <groupId>com.fei.base</groupId>
                 <artifactId>common-model</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
+            <!--model end -->
+
+            <!--utils start -->
             <dependency>
                 <groupId>com.fei.base</groupId>
                 <artifactId>common-utils</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
+            <!--utils end -->
+
+            <!--apollo start -->
             <dependency>
                 <groupId>com.fei.base</groupId>
                 <artifactId>common-apollo</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
+            <!--apollo end -->
+
+            <!--log start -->
             <dependency>
                 <groupId>com.fei.base</groupId>
                 <artifactId>common-log</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
+            <!--log end -->
+
+            <!--process start -->
             <dependency>
                 <groupId>com.fei.base</groupId>
                 <artifactId>common-process</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
+            <!--process end -->
+
+            <!--id sequence start -->
             <dependency>
                 <groupId>com.fei.base</groupId>
                 <artifactId>common-sequence</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
+            <!--id sequence end -->
+
+            <!--rpc start -->
+            <dependency>
+                <groupId>com.fei.base</groupId>
+                <artifactId>common-rpc</artifactId>
+                <version>${base.common.version}</version>
+            </dependency>
+            <!--rpc end -->
+
+            <!-- lock start -->
             <dependency>
                 <groupId>com.fei.base</groupId>
                 <artifactId>common-lock</artifactId>
@@ -99,22 +124,15 @@
             </dependency>
             <dependency>
                 <groupId>com.fei.base</groupId>
-                <artifactId>common-rpc</artifactId>
-                <version>${base.common.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.fei.base</groupId>
                 <artifactId>lock-api</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.fei.base</groupId>
                 <artifactId>lock-base</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
-
+            <!-- lock end -->
 
             <!--            暂无功能   start  -->
             <!--            <dependency>-->
@@ -148,12 +166,15 @@
             <!--            </dependency>-->
             <!--            暂未整合   end  -->
 
+            <!-- xxl-job start-->
             <dependency>
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
             </dependency>
+            <!-- xxl-job end-->
 
+            <!-- rocketmq start-->
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
@@ -164,6 +185,8 @@
                 <artifactId>rocketmq-client</artifactId>
                 <version>${rocketmq.version}</version>
             </dependency>
+            <!-- rocketmq end-->
+
             <!--db start-->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -183,6 +206,7 @@
             </dependency>
             <!--db end-->
 
+            <!-- apache-commons-start-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
@@ -198,6 +222,7 @@
                 <artifactId>commons-lang</artifactId>
                 <version>${commons-lang.version}</version>
             </dependency>
+            <!-- apache-commons-end-->
 
             <!--  guava start -->
             <dependency>
@@ -207,13 +232,14 @@
             </dependency>
             <!--  guava end -->
 
-            <!-- fastJson start -->
+            <!--  fastJson start TODO 后续使用Jackson替换 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
             <!-- fastJson end -->
+
             <!--  swagger start -->
             <dependency>
                 <groupId>io.swagger</groupId>
@@ -230,7 +256,6 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${springfox.swagger.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-models</artifactId>
@@ -238,6 +263,15 @@
             </dependency>
             <!--  swagger end  -->
 
+            <!-- jakarta start-->
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${jakarta.version}</version>
+            </dependency>
+            <!-- jakarta end-->
+
+            <!--  test start -->
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
@@ -256,6 +290,7 @@
                 <version>${assertj-core}</version>
                 <scope>test</scope>
             </dependency>
+            <!--  test end -->
 
             <!--  lombok start -->
             <dependency>
@@ -275,8 +310,8 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>${global.jdk.version}</source>
-                        <target>${global.jdk.version}</target>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
                     </configuration>
                     <version>${maven-compiler-plugin.version}</version>
                 </plugin>
@@ -300,14 +335,14 @@
     </build>
 
     <distributionManagement>
-<!--        <snapshotRepository>-->
-<!--            <id>nexus-snapshots</id>-->
-<!--            <url>${nexus.url}/content/repositories/snapshots/</url>-->
-<!--        </snapshotRepository>-->
-<!--        <repository>-->
-<!--            <id>nexus-releases</id>-->
-<!--            <url>${nexus.url}/content/repositories/releases/</url>-->
-<!--        </repository>-->
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>${nexus.url}/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <url>${nexus.url}/content/repositories/releases/</url>
+        </repository>
     </distributionManagement>
 
 </project>
