@@ -1,24 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.8</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.fei.base</groupId>
     <artifactId>base-parent</artifactId>
     <version>1.2.0</version>
     <packaging>pom</packaging>
-
-    <parent>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>2023.0.3</version>
-    </parent>
-
     <name>base-parent</name>
 
     <properties>
         <nexus.url>http://maven.aliyun.com/nexus/content/groups/public/</nexus.url>
         <global.encoding>UTF-8</global.encoding>
         <jdk.version>17</jdk.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.0</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
@@ -30,7 +30,7 @@
         <base.common.version>1.2.0</base.common.version>
         <base.sentinel.version>2.0.0</base.sentinel.version>
         <base.metrics.version>2.0.1</base.metrics.version>
-        <xxl-job.version>2.2.0</xxl-job.version>
+        <xxl-job.version>2.4.0</xxl-job.version>
         <rocketmq.springboot.version>2.1.1</rocketmq.springboot.version>
         <yun-logger.version>1.0.3</yun-logger.version>
         <akc-yst.version>1.1</akc-yst.version>
@@ -39,27 +39,40 @@
 
         <!--第三方业务组件start-->
         <mybatis.spring.boot.starter.version>3.0.3</mybatis.spring.boot.starter.version>
-        <mysql.conector.version>5.1.49</mysql.conector.version>
+        <mysql.conector.version>8.0.29</mysql.conector.version>
+        <protobuf.version>4.27.1</protobuf.version>
         <HikariCP.version>3.3.1</HikariCP.version>
         <sharding.jdbc.version>4.1.1</sharding.jdbc.version>
         <rocketmq.version>4.7.1</rocketmq.version>
         <common-lang3.version>3.9</common-lang3.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-collections4.version>4.4</commons-collections4.version>
-        <guava.version>29.0-jre</guava.version>
-        <fastjson.version>1.2.72</fastjson.version>
+        <guava.version>32.0.0-android</guava.version>
+        <hutool-all.version>5.8.31</hutool-all.version>
+        <fastjson.version>2.0.52</fastjson.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.3.0</springdoc-openapi-starter-webmvc-ui.version>
+        <apollo.client.version>2.3.0</apollo.client.version>
 
         <spring.io.micrometer.version>1.1.5</spring.io.micrometer.version>
-        <springfox.swagger.version>2.9.2</springfox.swagger.version>
-        <swagger.annotation.version>1.5.20</swagger.annotation.version>
+        <!--        <swagger.annotation.version>1.5.20</swagger.annotation.version>-->
         <assertj-core>2.6.0</assertj-core>
         <mockito-all.version>1.10.19</mockito-all.version>
         <junit.version>4.12</junit.version>
         <org.projectlombok.version>1.18.34</org.projectlombok.version>
+        <caffeine.version>3.1.8</caffeine.version>
+        <jackson.version>2.15.4</jackson.version>
+        <logback.replace.version>1.5.7</logback.replace.version>
         <!--第三方业务组件end-->
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--model start -->
             <dependency>
                 <groupId>com.fei.base</groupId>
@@ -132,6 +145,12 @@
                 <artifactId>lock-base</artifactId>
                 <version>${base.common.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
             <!-- lock end -->
 
             <!--            暂无功能   start  -->
@@ -165,6 +184,12 @@
             <!--                <version>${base.metrics.version}</version>-->
             <!--            </dependency>-->
             <!--            暂未整合   end  -->
+
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version> <!-- 使用最新稳定版 -->
+            </dependency>
 
             <!-- xxl-job start-->
             <dependency>
@@ -234,33 +259,81 @@
 
             <!--  fastJson start TODO 后续使用Jackson替换 -->
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
+<!--                <groupId>com.alibaba</groupId>-->
+<!--                <artifactId>fastjson</artifactId>-->
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+
+
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba.fastjson2</groupId>-->
+<!--                <artifactId>fastjson2</artifactId>-->
+<!--                <version>2.0.52</version>-->
+<!--            </dependency>-->
             <!-- fastJson end -->
 
+            <!-- jackson  start-->
+            <!--            JSON 解析和生成-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--            JSON 数据绑定功能-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--            JSON 提供用于控制序列化和反序列化的注解-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--            支持将 XML 数据序列化为 Java 对象或将 Java 对象序列化为 XML-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--            支持将 YAML 数据序列化为 Java 对象或将 Java 对象序列化为 YAML-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--            支持 Java 8 的日期和时间 API（java.time）-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!-- jackson  end-->
+
             <!--  swagger start -->
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger.annotation.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${springfox.swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${springfox.swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-models</artifactId>
-                <version>1.5.22</version>
-            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>io.swagger</groupId>-->
+            <!--                <artifactId>swagger-annotations</artifactId>-->
+            <!--                <version>${swagger.annotation.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>io.springfox</groupId>-->
+            <!--                <artifactId>springfox-swagger2</artifactId>-->
+            <!--                <version>${springfox.swagger.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>io.springfox</groupId>-->
+            <!--                <artifactId>springfox-swagger-ui</artifactId>-->
+            <!--                <version>${springfox.swagger.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>io.swagger</groupId>-->
+            <!--                <artifactId>swagger-models</artifactId>-->
+            <!--                <version>1.5.22</version>-->
+            <!--            </dependency>-->
             <!--  swagger end  -->
 
             <!-- jakarta start-->
